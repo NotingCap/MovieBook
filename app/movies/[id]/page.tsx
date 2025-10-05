@@ -137,7 +137,7 @@ export default function MovieDetailPage({ params }: { params: Promise<{ id: stri
       <Layout>
         <div className="text-center py-12">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          <p className="mt-4 text-gray-600">Loading movie...</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading movie...</p>
         </div>
       </Layout>
     );
@@ -147,7 +147,7 @@ export default function MovieDetailPage({ params }: { params: Promise<{ id: stri
     return (
       <Layout>
         <div className="text-center py-12">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Movie Not Found</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-50 mb-4">Movie Not Found</h1>
           <Link href="/" className="text-blue-600 hover:underline">
             Back to Movies
           </Link>
@@ -160,12 +160,12 @@ export default function MovieDetailPage({ params }: { params: Promise<{ id: stri
     <Layout>
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Movie Details */}
-        <div className="bg-white rounded-lg shadow-md p-8">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
           <div className="flex justify-between items-start mb-4">
             <div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">{movie.title}</h1>
-              <div className="flex items-center gap-4 text-gray-600">
-                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded">
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-50 mb-2">{movie.title}</h1>
+              <div className="flex items-center gap-4 text-gray-600 dark:text-gray-400">
+                <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded dark:bg-blue-900 dark:text-blue-200">
                   {movie.genre}
                 </span>
                 <span>{movie.releaseYear}</span>
@@ -194,26 +194,26 @@ export default function MovieDetailPage({ params }: { params: Promise<{ id: stri
             {movie.averageRating > 0 ? (
               <div className="flex items-center gap-3">
                 {renderStars(movie.averageRating)}
-                <span className="text-xl font-semibold text-gray-900">
+                <span className="text-xl font-semibold text-gray-900 dark:text-gray-50">
                   {movie.averageRating.toFixed(1)}
                 </span>
-                <span className="text-gray-600">
+                <span className="text-gray-600 dark:text-gray-400">
                   ({movie.reviewCount} {movie.reviewCount === 1 ? 'review' : 'reviews'})
                 </span>
               </div>
             ) : (
-              <p className="text-gray-500">No reviews yet. Be the first to review!</p>
+              <p className="text-gray-500 dark:text-gray-500">No reviews yet. Be the first to review!</p>
             )}
           </div>
 
           {/* Description */}
           <div>
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">Description</h2>
-            <p className="text-gray-700 whitespace-pre-wrap">{movie.description}</p>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-50 mb-2">Description</h2>
+            <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{movie.description}</p>
           </div>
         </div>
 
-        {/* Review Form */}
+        {/* Review Form Prompt */}
         {user && !userReview && !showReviewForm && (
           <button
             onClick={() => setShowReviewForm(true)}
@@ -236,8 +236,8 @@ export default function MovieDetailPage({ params }: { params: Promise<{ id: stri
         )}
 
         {!user && (
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center">
-            <p className="text-gray-700">
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 text-center dark:bg-blue-950 dark:border-blue-700">
+            <p className="text-gray-700 dark:text-gray-50">
               <Link href="/login" className="text-blue-600 hover:underline font-medium">
                 Login
               </Link>
@@ -252,12 +252,12 @@ export default function MovieDetailPage({ params }: { params: Promise<{ id: stri
 
         {/* Reviews List */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-50 mb-4">
             Reviews ({reviews.length})
           </h2>
 
           {reviews.length === 0 ? (
-            <div className="bg-white rounded-lg shadow-md p-8 text-center text-gray-500">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 text-center text-gray-500 dark:text-gray-400">
               No reviews yet. Be the first to review this movie!
             </div>
           ) : (

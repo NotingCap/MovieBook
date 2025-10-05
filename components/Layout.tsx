@@ -2,7 +2,8 @@ import Navbar from './Navbar';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
+    // Sets overall background and text color based on light/dark mode preference
+    <div className="min-h-screen flex flex-col bg-gray-50 dark:bg-gray-900 dark:text-gray-50">
       <Navbar />
       <main className="flex-1 container mx-auto px-4 py-8">
         {children}

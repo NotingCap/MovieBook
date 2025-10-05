@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/mongodb';
 import User, { IUser } from '@/models/User';
 import { getSession } from '@/lib/auth';
+import * as bcrypt from 'bcrypt';
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,6 +20,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Find user
+    // We explicitly exclude the password in other fetches, but need it here.
     const user: IUser | null = await User.findOne({ email: email.toLowerCase() });
 
     if (!user) {
@@ -28,8 +30,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check password (in production, use bcrypt.compare!)
-    if (user.password !== password) {
+    // Check password
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
       return NextResponse.json(
         { success: false, error: 'Invalid credentials' },
         { status: 401 }

@@ -115,7 +115,7 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
       <Layout>
         <div className="text-center py-12">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-          <p className="mt-4 text-gray-600">Loading profile...</p>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading profile...</p>
         </div>
       </Layout>
     );
@@ -125,7 +125,7 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
     return (
       <Layout>
         <div className="text-center py-12">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">User Not Found</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-50 mb-4">User Not Found</h1>
           <Link href="/" className="text-blue-600 hover:underline">
             Back to Home
           </Link>
@@ -140,12 +140,12 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
     <Layout>
       <div className="max-w-4xl mx-auto space-y-6">
         {/* Profile Header */}
-        <div className="bg-white rounded-lg shadow-md p-8">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
           <div className="flex justify-between items-start">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">{profile.name}</h1>
-              <p className="text-gray-600">{profile.email}</p>
-              <p className="text-sm text-gray-500 mt-1">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-50 mb-2">{profile.name}</h1>
+              <p className="text-gray-600 dark:text-gray-400">{profile.email}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
                 Member since {new Date(profile.createdAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
@@ -171,37 +171,37 @@ export default function ProfilePage({ params }: { params: Promise<{ id: string }
           </div>
 
           {/* Statistics */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t border-gray-200">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
             <div className="text-center">
               <p className="text-3xl font-bold text-blue-600">{profile.reviewCount}</p>
-              <p className="text-gray-600">Reviews Written</p>
+              <p className="text-gray-600 dark:text-gray-400">Reviews Written</p>
             </div>
             <div className="text-center">
               <div className="flex items-center justify-center gap-2">
                 {renderStars(profile.averageRating)}
-                <span className="text-2xl font-bold text-gray-900">
+                <span className="text-2xl font-bold text-gray-900 dark:text-gray-50">
                   {profile.averageRating.toFixed(1)}
                 </span>
               </div>
-              <p className="text-gray-600">Average Rating Given</p>
+              <p className="text-gray-600 dark:text-gray-400">Average Rating Given</p>
             </div>
           </div>
         </div>
 
         {/* Reviews */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-50 mb-4">
             Reviews ({reviews.length})
           </h2>
 
           {reviews.length === 0 ? (
-            <div className="bg-white rounded-lg shadow-md p-8 text-center text-gray-500">
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 text-center text-gray-500 dark:text-gray-400">
               {isOwnProfile ? "You haven't written any reviews yet." : "This user hasn't written any reviews yet."}
             </div>
           ) : (
             <div className="space-y-4">
               {reviews.map((review) => (
-                <div key={review._id} className="bg-white rounded-lg shadow-md p-6">
+                <div key={review._id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
                   <Link
                     href={`/movies/${review.movieId._id}`}
                     className="text-xl font-bold text-blue-600 hover:underline mb-2 block"

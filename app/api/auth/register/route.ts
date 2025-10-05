@@ -34,17 +34,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create new user
+    // Create new user (password is automatically hashed by the Mongoose pre-save hook)
     const user = await User.create({
       name,
       email: email.toLowerCase(),
-      password, // In production, hash this with bcrypt!
+      password,
     });
 
-    // Create session
+   
     const session = await getSession();
     session.user = {
-      id: user._id.toString(),
+      id: (user as any)._id.toString(),
       email: user.email,
       name: user.name,
     };
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
         success: true,
         message: 'User registered successfully',
         user: {
-          id: user._id.toString(),
+          id: (user as any)._id.toString(),
           name: user.name,
           email: user.email,
         },
