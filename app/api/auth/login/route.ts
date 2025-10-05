@@ -19,8 +19,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Find user
-    const user = await User.findOne({ email: email.toLowerCase() });
-    
+    const user: IUser | null = await User.findOne({ email: email.toLowerCase() });
+
     if (!user) {
       return NextResponse.json(
         { success: false, error: 'Invalid credentials' },
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     // Create session
     const session = await getSession();
     session.user = {
-      id: user._id.toString(),
+      id: (user as any)._id.toString(),
       email: user.email,
       name: user.name,
     };
@@ -49,7 +49,7 @@ export async function POST(request: NextRequest) {
       success: true,
       message: 'Login successful',
       user: {
-        id: user._id.toString(),
+        id: (user as any)._id.toString(),
         name: user.name,
         email: user.email,
       },
