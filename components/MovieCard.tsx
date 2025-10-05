@@ -25,7 +25,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
         {[...Array(emptyStars)].map((_, i) => (
           <span key={`empty-${i}`} className="text-gray-300">★</span>
         ))}
-        <span className="text-sm text-gray-600 ml-1">
+        <span className="text-sm text-gray-600 dark:text-gray-400 ml-1">
           {rating.toFixed(1)} ({movie.reviewCount || 0})
         </span>
       </div>
@@ -34,11 +34,11 @@ export default function MovieCard({ movie }: { movie: Movie }) {
 
   return (
     <Link href={`/movies/${movie._id}`}>
-      <div className="bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow p-6 h-full cursor-pointer">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{movie.title}</h3>
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow p-6 h-full cursor-pointer">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50 mb-2">{movie.title}</h3>
         
-        <div className="flex items-center gap-3 mb-3 text-sm text-gray-600">
-          <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
+        <div className="flex items-center gap-3 mb-3 text-sm text-gray-600 dark:text-gray-400">
+          <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded dark:bg-blue-900 dark:text-blue-200">
             {movie.genre}
           </span>
           <span>{movie.releaseYear}</span>
@@ -49,10 +49,10 @@ export default function MovieCard({ movie }: { movie: Movie }) {
             {renderStars(movie.averageRating)}
           </div>
         ) : (
-          <p className="text-sm text-gray-500 mb-3">No reviews yet</p>
+          <p className="text-sm text-gray-500 dark:text-gray-500 mb-3">No reviews yet</p>
         )}
 
-        <p className="text-gray-700 line-clamp-3">{movie.description}</p>
+        <p className="text-gray-700 dark:text-gray-300 line-clamp-3">{movie.description}</p>
       </div>
     </Link>
   );

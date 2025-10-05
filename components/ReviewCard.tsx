@@ -64,11 +64,11 @@ export default function ReviewCard({ review, onEdit, onDelete }: ReviewCardProps
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
       <div className="flex items-start justify-between mb-3">
         <div>
-          <p className="font-semibold text-gray-900">{userName}</p>
-          <p className="text-sm text-gray-500">
+          <p className="font-semibold text-gray-900 dark:text-gray-50">{userName}</p>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
             {new Date(review.createdAt).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -79,10 +79,10 @@ export default function ReviewCard({ review, onEdit, onDelete }: ReviewCardProps
         {renderStars(review.rating)}
       </div>
 
-      <p className="text-gray-700 whitespace-pre-wrap">{review.comment}</p>
+      <p className="text-gray-700 dark:text-gray-300 whitespace-pre-wrap">{review.comment}</p>
 
       {isOwner && (onEdit || onDelete) && (
-        <div className="flex gap-2 mt-4 pt-4 border-t border-gray-200">
+        <div className="flex gap-2 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
           {onEdit && (
             <button
               onClick={() => onEdit(review)}

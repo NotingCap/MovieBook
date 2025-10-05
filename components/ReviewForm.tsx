@@ -68,8 +68,8 @@ export default function ReviewForm({ movieId, existingReview, onSuccess, onCance
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-6 space-y-4">
-      <h3 className="text-xl font-bold text-gray-900">
+    <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 space-y-4">
+      <h3 className="text-xl font-bold text-gray-900 dark:text-gray-50">
         {existingReview ? 'Edit Your Review' : 'Write a Review'}
       </h3>
 
@@ -81,7 +81,7 @@ export default function ReviewForm({ movieId, existingReview, onSuccess, onCance
 
       {/* Star Rating */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
           Rating *
         </label>
         <div className="flex gap-2">
@@ -106,7 +106,7 @@ export default function ReviewForm({ movieId, existingReview, onSuccess, onCance
             </button>
           ))}
           {rating > 0 && (
-            <span className="text-gray-600 ml-2 self-center">
+            <span className="text-gray-600 dark:text-gray-400 ml-2 self-center">
               {rating} / 5
             </span>
           )}
@@ -115,7 +115,7 @@ export default function ReviewForm({ movieId, existingReview, onSuccess, onCance
 
       {/* Comment */}
       <div>
-        <label htmlFor="comment" className="block text-sm font-medium text-gray-700 mb-1">
+        <label htmlFor="comment" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
           Your Review *
         </label>
         <textarea
@@ -125,10 +125,10 @@ export default function ReviewForm({ movieId, existingReview, onSuccess, onCance
           required
           maxLength={1000}
           rows={6}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"
           placeholder="Share your thoughts about this movie..."
         />
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
           {comment.length}/1000 characters
         </p>
       </div>
@@ -146,10 +146,10 @@ export default function ReviewForm({ movieId, existingReview, onSuccess, onCance
           <button
             type="button"
             onClick={onCancel}
-            className="px-6 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition"
+            className="px-6 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition dark:bg-gray-700 dark:text-gray-50 dark:hover:bg-gray-600"
           >
             Cancel
-          </button>
+            </button>
         )}
       </div>
     </form>
