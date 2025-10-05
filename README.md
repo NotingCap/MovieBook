@@ -59,7 +59,7 @@ A modern, full-stack movie review platform built with **Next.js 15** (App Router
 ### Prerequisites
 
 - **Node.js** v14+ - [Download](https://nodejs.org/)
-- **MongoDB** v4.4+ - [Download](https://www.mongodb.com/try/download/community)
+- **MongoDB Atlas Account** (Free) - [Sign up](https://www.mongodb.com/cloud/atlas/register)
 
 ### Installation
 
@@ -73,18 +73,18 @@ cd moviebook
 npm install
 ```
 
-3. **Check environment variables**
+3. **Configure environment variables**
 
-The `.env.local` file should already be configured with:
+The `.env.local` file is already configured with MongoDB Atlas connection:
 ```env
-MONGODB_URI=mongodb://localhost:27017/moviebook
+MONGODB_URI=mongodb+srv://chartinain_db_user:W8j6uIiFji3Uw1ww@cluster0.eqqsd4a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
 SESSION_SECRET=this-is-a-super-secret-key-that-is-at-least-32-characters-long-for-iron-session
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
 4. **Start the application**
 
-MongoDB is already running on your system, so just start Next.js:
+The app is now connected to MongoDB Atlas cloud database:
 
 ```bash
 npm run dev
@@ -304,8 +304,11 @@ See [`TESTING_GUIDE.md`](TESTING_GUIDE.md) for comprehensive testing instruction
 
 ## 🐛 Troubleshooting
 
-### MongoDB "Address already in use"
-✅ This is normal! MongoDB is already running. Just start Next.js with `npm run dev`.
+### MongoDB Atlas Connection Issues
+If you encounter connection issues:
+- Verify your connection string in `.env.local`
+- Check that your IP address is whitelisted in MongoDB Atlas
+- Ensure network access is properly configured
 
 See [`TROUBLESHOOTING.md`](TROUBLESHOOTING.md) for detailed solutions.
 
@@ -356,15 +359,15 @@ git push -u origin main
 - Go to [vercel.com](https://vercel.com)
 - Import your repository
 - Add environment variables:
-  - `MONGODB_URI` - Your MongoDB Atlas connection string
+  - `MONGODB_URI` - Use the same MongoDB Atlas connection string from `.env.local`
   - `SESSION_SECRET` - A secure random string (32+ chars)
-  - `NEXT_PUBLIC_APP_URL` - Your production URL
+  - `NEXT_PUBLIC_APP_URL` - Your production URL (e.g., https://your-app.vercel.app)
 - Click "Deploy"
 
-3. **Set up MongoDB Atlas**
-- Create a free cluster at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
-- Get your connection string
-- Add it to Vercel environment variables
+3. **MongoDB Atlas Setup**
+✅ Already configured! The database connection is ready to use.
+- Update network access in MongoDB Atlas to allow connections from anywhere (0.0.0.0/0) for Vercel
+- Or add Vercel's IP addresses to the whitelist
 
 ---
 
